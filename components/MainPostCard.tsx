@@ -24,6 +24,7 @@ const MainPostCard = ({ post }: MainPostCardProps) => {
       <Link href={`/${post.category}/${post.slug}`}>
         <div>
           <span className="text-indigo-500">{post.categoryRelation.title}</span>
+          <h4>By <span className="text-indigo-500">{post.user.name}</span></h4>
           <h3 className=" text-base md:text-xl font-semibold">{post.title}</h3>
           <p>{post.shortDescription}</p>
         </div>

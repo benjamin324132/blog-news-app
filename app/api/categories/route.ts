@@ -1,3 +1,4 @@
+import { getSession } from "@/actions/users";
 import prismaDb from "@/lib/db";
 import { categorySchema } from "@/validations";
 import { NextResponse } from "next/server";
@@ -7,6 +8,12 @@ export async function POST(req: Request) {
     const body = await req.json();
 
     const { title, slug, img } = categorySchema.parse(body);
+
+    const session = await getSession();
+
+    if(!session){
+      return new Response("Unauthorized action", {status: 401});
+    }
 
     const categoryExist = await prismaDb.category.findFirst({
       where: {

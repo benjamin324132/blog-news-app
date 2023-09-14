@@ -1,6 +1,7 @@
-import { Category, Post } from "@prisma/client";
+import { Category, Post, User } from "@prisma/client";
 
 
 export type PostWithCategories = Post & {
    categoryRelation: Category
+   user: User
 }

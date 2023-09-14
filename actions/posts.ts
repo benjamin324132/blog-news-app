@@ -5,6 +5,7 @@ export const getPosts = async ({ count = 10 }) => {
     take: count,
     include: {
       categoryRelation: true,
+      user: true
     },
     orderBy: {
       createdAt: "desc",
@@ -35,6 +36,7 @@ export const getPostByCategory = async (category: string) => {
     },
     include: {
       categoryRelation: true,
+      user: true
     },
     orderBy: {
       createdAt: "desc",

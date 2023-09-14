@@ -15,7 +15,8 @@ export async function GET(req: Request, { params }: IParams) {
         slug: params.slug,
       },
       include:{
-        categoryRelation: true
+        categoryRelation: true,
+        user: true
       }
     });
     return NextResponse.json(post);
