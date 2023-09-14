@@ -3,11 +3,11 @@ import { Post } from "@prisma/client";
 import Image from "next/image";
 import Link from "next/link";
 
-interface SamllPostCardProps {
+interface SmallPostCardProps {
   post: PostWithCategories;
 }
 
-const SamllPostCard = ({ post }: SamllPostCardProps) => {
+const SmallPostCard = ({ post }: SmallPostCardProps) => {
   return (
     <Link href={`/${post.category}/${post.slug}`}>
       <div className="flex gap-x-2 items-start justify-between" key={post.id}>
@@ -30,4 +30,4 @@ const SamllPostCard = ({ post }: SamllPostCardProps) => {
   );
 };
 
-export default SamllPostCard;
+export default SmallPostCard;

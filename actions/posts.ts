@@ -20,6 +20,7 @@ export const getTopPosts = async ({ count = 5 }) => {
     take: count,
     include: {
       categoryRelation: true,
+      user: true
     },
     orderBy: {
       createdAt: "asc",

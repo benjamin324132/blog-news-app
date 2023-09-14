@@ -1,5 +1,5 @@
 import { getTopPosts } from "@/actions/posts";
-import SamllPostCard from "./SmallPostCard";
+import SmallPostCard from "./SmallPostCard";
 
 const TopPosts = async () => {
   const posts = await getTopPosts({});
@@ -10,7 +10,7 @@ const TopPosts = async () => {
       </h3>
       <div className="flex flex-col gap-y-4">
         {posts.map((post) => (
-          <SamllPostCard post={post} key={post.id} />
+          <SmallPostCard post={post} key={post.id} />
         ))}
       </div>
     </div>
