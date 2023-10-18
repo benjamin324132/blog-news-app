@@ -23,6 +23,11 @@ export const categorySchema = z.object({
   img: z.string().url().nonempty(),
 });
 
+export const tagSchema = z.object({
+  title: z.string().nonempty(),
+  slug: z.string().regex(/^[a-z](-?[a-z])*$/,{message: "Please enter a valid slug"}).nonempty(),
+});
+
 export const signInSchema = z.object({
   email: z.string().email({message: "Please enter a valid email"}),
   password: z.string().min(6, { message: "Please enter at least 6 characters password"}).max(20, {message: "Please enter less than 20 characters password"})

@@ -5,3 +5,14 @@ export const getCategories = async () => {
 
   return categories;
 };
+
+export const categoryExist = async (slug: string) => {
+  const category = await prismaDb.category.findUnique({
+    where: {
+      slug
+    }
+  });
+
+  return category;
+};
+

@@ -2,6 +2,7 @@ import RelatedPosts from "@/components/RealtedPosts";
 import { PostWithCategories } from "@/types";
 import { Metadata } from "next";
 import Image from "next/image";
+import { notFound } from "next/navigation";
 
 interface IParams {
   params: {
@@ -12,9 +13,9 @@ interface IParams {
 const getPost = async (slug: string) => {
   const data = await fetch(`${process.env.BASE_URL}/api/posts/${slug}`);
 
-  if (!data.ok) {
-    throw new Error("Failed");
-  }
+  //if (!data.ok) {
+  //  throw new Error("Failed");
+ // }
 
   return data.json();
 };
@@ -27,6 +28,9 @@ export const generateMetadata = async ({
   return {
     title: post?.title,
     description: post?.shortDescription,
+    authors: {
+       name: post?.user.name || "Author"
+    },
     openGraph: {
       title: post?.title,
       description: post?.shortDescription,
@@ -51,6 +55,10 @@ export const generateMetadata = async ({
 
 const Page = async ({ params }: IParams) => {
   const post = (await getPost(params.slug)) as PostWithCategories | null;
+
+  if(!post){
+     notFound();
+  }
 
   return (
     <div className="w-full">

@@ -1,6 +1,8 @@
+import { categoryExist } from "@/actions/categories";
 import { getPostByCategory } from "@/actions/posts";
 import MainPostList from "@/components/MainPostList";
 import { Metadata } from "next";
+import { notFound } from "next/navigation";
 
 interface Iparams {
   params: {
@@ -11,14 +13,20 @@ interface Iparams {
 export const generateMetadata = async ({
   params,
 }: Iparams): Promise<Metadata> => {
-
-  const title = params.category.charAt(0).toUpperCase() + params.category.slice(1)
+  const title =
+    params.category.charAt(0).toUpperCase() + params.category.slice(1);
   return {
-    title
+    title,
   };
 };
 
 const Page = async ({ params }: Iparams) => {
+  const category = await categoryExist(params.category);
+
+  if (!category) {
+    notFound();
+  }
+  
   const posts = await getPostByCategory(params.category);
 
   return (
